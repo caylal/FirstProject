@@ -1,0 +1,767 @@
+*{margin: 0;padding: 0;}
+html,body{width: 100%;height: 100%; outline: none;}
+html{font-size: 14px; font-family: "微软雅黑"}
+ul ,li{list-style: none;}
+a{ color: #ffffff;text-decoration: none;}
+button {
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    outline: none;
+}
+.contain{width: 100%;height: 100%; display: flex;flex-direction: column;}
+.clear{
+    clear: both;
+}
+/*顶部样式*/
+.header{ height: 72px; width: 100%;background-size: cover;background-color: #3696f1;}
+.logo{ 
+    float: left;
+    height: 72px;
+    width: 25%;   
+}
+.logo-img{
+    position: relative;
+    top: 10px;
+    left:15px;
+    height: 50px;
+    width: 50px;
+    background: url(../images/lcon-logo.png);
+    background-position: 0 0;
+}
+.logo-title{
+    position: absolute;    
+    top: 10px;
+    left: 75px;   
+    height: 50px;
+    width: 250px;
+    color: #ffffff;  
+    background: url(../images/lcon-logo.png) no-repeat;
+    background-position: 0 -50px;
+}
+.right-menu{
+    height: 72px;
+    width: 32%; 
+    float: right;  
+}
+.menu-style{
+    height: 72px;
+    width: 398px; 
+    float: right;
+    display: flex;
+    flex-direction: row;    
+}
+.menu-style li:hover{
+    background: #5fc1f4;
+}
+.menu-list{
+    width: 100px;
+}
+.user-info{
+    width: 98px;
+    background-color: #5fc1f4;   
+}
+.user-info-img{  
+    width: 40px; 
+    padding:7px 0 0 29px;    
+}
+.user-info-name{
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+}
+.li-style{
+    height: 5px;
+    width: 98px;
+    margin: 0 auto;
+    background-color: #5fc1f4;
+}
+.menu-btn{
+    height: 30px;
+    width: 30px;   
+    background: url(../images/sprites-right.png) no-repeat;
+}
+.menu-msg,.menu-lock,.menu-logout{
+    padding-top: 10px;
+    text-align: center;    
+}
+.m-msg{
+    background-position: 0 0;
+}
+.m-lock{
+    background-position: 0 -30px;
+}
+.m-logout{
+    background-position: 0 -60px;
+}
+.menu-title{
+    font-size: 12px;
+    color: #ffffff;
+    padding-top: 2px;
+}
+
+/*中间内容样式*/
+.content{
+    height:calc(100% - 102px);
+    width: 100%;
+    position: relative;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    overflow:hidden;         
+}
+.left-flag{
+    height: 21px;
+    width: 21px;
+    position: absolute;
+    background-image: url(../images/tu.png);
+    background-color: #09a2c8;   
+    z-index: 1000;
+}
+.left-nav{
+    float: left;
+    position: absolute;
+    height: 21px;
+    width: 82px;   
+    z-index:1000;
+}
+.nav-btn{   
+    height: 21px;
+    width: 82px;   
+    outline: 0;
+    background: url(../images/app-button.png) no-repeat;   
+}
+.btn-focus{
+     background-position: 0 -21px;    
+}
+.btn-focused{
+    background-position: 0 0;
+}
+/* 窗口 */
+.desk-content{
+    width: 100%;
+    height: 100%;     
+}
+.window-container{
+    background-color: #ffffff;
+    border: 1px solid #95d0fe;
+    position:absolute;
+    box-shadow: 1px 2px 11px 2px #b9b7b7;
+}
+.title-bar{
+    width: 100%;
+    height: 30px;     
+    background-color: #90d5f4;
+}
+.title-banner{
+    width: 100px;
+    height: 30px; 
+    float: left;       
+}
+.title-img{
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 5px 0 0 5px;
+    background: url(../images/images-sprites.png) no-repeat;
+}
+.title-banner p{
+    margin: 5px 0 0 5px;
+}
+.title-handle{
+    width: 90px;
+    height: 30px;
+    float: right;
+}
+.title-handle a{
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    background: url(../images/win-button.png);
+}
+.title-handle a.min{
+    background-position: 0 0;
+}
+.title-handle a.min:hover, a.max:hover{
+   background-color: #fff;
+}
+.title-handle a.max{
+    background-position: 0 -30px;
+}
+.title-handle a.revert{
+    background-position: 0 -30px;
+    display:none;
+}
+.title-handle a.win-close{
+    background-position:  0 -60px;
+}
+.title-handle a.win-close:hover{
+    background-color: #fa6050;
+}
+
+.resizeL,.resizeT,.resizeR,.resizeB,.resizeLT,.resizeTR,.resizeLB{
+    position: absolute;
+    background: #000;
+    overflow: hidden;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+}
+.resizeBR{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    cursor: nw-resize;
+}
+.resizeL, .resizeR{
+    top: 0;
+    width: 5px;
+    height: 100%;
+    cursor: w-resize;
+}
+.resizeR{
+    right: 0;
+}
+.resizeT, .resizeB{
+    width: 100%;
+    height: 5px;
+    cursor: n-resize;
+}
+.resizeT{
+    top: 0;
+}
+.resizeB{
+    bottom: 0;
+}
+.resizeLT, .resizeTR, .resizeLB{
+    width: 8px;
+    height: 8px;
+    background: #FF0;
+}
+.resizeLT{
+    top: 0;
+    left: 0;
+    cursor: ne-resize;
+}
+.resizeTR{
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+}
+.resizeLB{
+    left: 0;
+    bottom: 0;
+    cursor: ne-resize;
+}
+.desk-nav{
+    float: left;
+    height: 650px;   
+    width: 980px;   
+    display: none;
+    background-color: #f2f2f2;
+    border: solid 1px #d1d1d1;
+    margin-top: 1px;
+    margin-left: 1px;
+    box-shadow: 3px 3px 5px #cecece;
+    z-index: 900;
+    position: absolute;
+    
+}
+.desk-menu{
+    width: 95%;
+    height: calc(100% - 50px);
+    float: right; 
+    margin-top:10px; 
+    display: none; 
+    overflow: auto;
+}
+.desk-menu-tab{
+    width: 100%;
+    height: 40px;
+    float: right;
+    text-align: center;
+    background: #7ecdf4;
+}
+.desk-menu-item{
+    width: 100%;
+    min-height: 100px;
+    margin-top: 20px;
+    float: left;
+}
+.desk-menu-header{
+    width:inherit;
+    height: 20px;   
+    color: #5faff1;
+    padding-bottom: 10px;
+    font-weight: bold;     
+}
+.desk-menu-list{
+    width: 85px;
+    height: 70px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.desk-menu-content{
+    padding-top: 8px;
+}
+.menu-name{
+    height:20px; 
+    width: 85px;
+    text-align: center;
+    font-size: 12px;
+    color: #727272;
+    padding-top: 10px;
+}
+.menu-img{
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    background: url(../images/images-sprites.png) no-repeat;
+}
+.img-hover{
+    display: inline-block;
+    width: 40px;
+    height: 40px;  
+}
+.isHover{
+     background: url(../images/light.png) no-repeat;
+}
+
+.menu-calling{
+    background-position: 0 0;
+    background-size: 100%;
+}
+.menu-amap{
+    background-position: 0 -40px;
+    background-size: 100%;
+}
+.menu-contact{
+    background-position: 0 -80px;
+    background-size: 100%;
+}
+.menu-config{
+    background-position: 0 -120px;
+     background-size: 100%;
+}
+.menu-shortmsg{
+    background-position: 0 -160px;
+}
+.menu-carowner{
+    background-position: 0 -200px;
+}
+.menu-callinglist{
+    background-position: 0 -240px;
+}
+.menu-commurecord{
+    background-position: 0 -280px;
+}
+.menu-mytelorder{
+    background-position: 0 -320px;
+}
+.menu-telorder{
+    background-position: 0 -360px;
+}
+.menu-business{
+    background-position: 0 -400px;
+}
+.menu-template{
+    background-position: 0 -440px;
+}
+.menu-workorder{
+    background-position: 0 -480px;
+}
+.menu-workorderlist{
+    background-position: 0 -520px;
+}
+.menu-category{
+    background-position: 0 -560px;
+}
+.menu-knowledge{
+    background-position: 0 -600px;
+}
+.menu-search{
+    background-position: 0 -640px;
+}
+.menu-notice{
+    background-position: 0 -680px;
+}
+.menu-report{
+    background-position: 0 -720px;
+}
+.menu-carsteward{
+    background-position: 0 -880px;
+}
+.menu-buick{
+    background-position: 0 -840px;
+}
+.menu-authority{
+    background-position: 0 -760px;
+}
+.menu-coderules{
+    background-position:  0 -800px;
+}
+.menu-vip{
+     background-position: 0 -920px;
+}
+.menu-weather{
+     background-position: 0 -960px;
+}
+.desk-menu-ul{
+    width: 180px;
+    height: 40px;
+    margin: 0 auto;
+}
+.tab-stlye{
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    float: left;      
+}
+.tab-img{
+    width: 60px;
+    height: 40px;
+    background: url(../images/app-swichover.png) no-repeat;
+}
+.tab-home{   
+    background-position: 0 0;
+}
+.tab-third{
+    background-position: 0 -40px;
+}
+.tab-setting{
+    background-position: 0 -80px;
+}
+.active{
+     background-color: rgb(60, 171, 244); 
+}
+.focus{
+    display: block;
+}
+
+/*底部样式*/
+.footer{
+    width: 100%;
+    height: 31px;
+    background-color: #5faff1;
+    border-top: 1px solid #19c6f1;
+}
+.task-bar{
+    height: 30px;
+    width: 40px;
+    float: left;  
+    background: url(../images/bottom.png);
+    background-position: 0 0; 
+    cursor: pointer;
+}
+.task-bar:hover{
+    background-position: 0 -30px;
+}
+.task-window{
+    height: 30px;
+    margin: 0;
+}
+.task-win-style{
+    float: left;
+    margin-left: 5px;
+    font-size: 14px;      
+    cursor: pointer;
+    color: #525252;
+}
+.task-win-info{
+    display: flex;
+    flex-direction: row;
+    width: auto;   
+    justify-content: center;
+}
+.task-win-p{
+    margin: 5px 5px 0 1px;
+    float: left;
+}
+/* .task-win-style >p{
+    width: 100%;
+    height:50%; 
+    line-height: 30px; 
+    display: inline-block;
+    vertical-align: middle;
+} */
+.task-img{
+    width: 20px;
+    height: 20px;
+    float: left; 
+    margin: 5px 5px 0 1px;  
+    background: url(../images/images-sprites.png) no-repeat;
+}
+.noActive{   
+    height: 30px;
+    width:110px;   
+    background-color: #70bbf1;
+    
+}
+.isActive{    
+    height: 30px;
+    width: 140px;       
+    background-color: #90d5f4;
+}
+
+
+/*login登录样式*/
+.login{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+}
+.login-bg{
+    width: 100%;
+    height: 100%;
+    padding-top: 200px;
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
+.login-box{
+    width: 500px;
+    height: 299px;
+    background-repeat: no-repeat;
+    background-image: url(../images/beijing2.png);
+    margin: 0 auto;
+}
+.login-header{
+    width: 100%;
+    height: 66px;    
+}
+.login-header>div{
+    width: 100%;
+    height: 28px; 
+    padding-top: 35px; 
+    text-align: center;
+
+}
+.login-bottom{
+    width: 500px;
+    height: 200px;
+}
+.login-content{
+    width: 337px;
+    height: 185px;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+.login-user{
+    width: 337px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+}
+.login-user-top{
+    padding-top: 25px;
+}
+.user-logo{
+    width: 29px;
+    height: 30px;    
+}
+.user-input{
+    width: 308px;;
+    height: 30px;   
+    border: 1px solid #53cef1;
+    border-radius: 0 5px 5px 0;
+    color: #353535;
+    background: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.login-btn{
+    width: 337px;
+    height: 30px;
+    padding-top: 15px;
+}
+.login-submit{
+    width: 100%;
+    height: 100%;
+    color: white;
+    border:none;
+    background: #fff;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-image: url(../images/Button.png);
+    background-position: 0 -31px;
+}
+.login-submit:hover{
+    background-position: 0 0;
+}
+
+ /*Org样式*/
+.org-box{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url(../images/background.jpg);
+}
+
+
+.org-item-box{
+    max-width: 540px;
+    min-width: 170px;
+    height: 221px;
+    padding-top: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
+.org-item{
+   display: inline-block;   
+}
+.org-item-style{   
+    margin-left: 30px; 
+    display: inline;  
+    float: left;
+}
+.org-item-style p{
+    color: #838383;
+    font-size: 16px;
+    padding-top: 2px;
+}
+.org-item-img{
+    width: 140px;
+    height: 140px;   
+    background: url(../images/Ogtion.png)no-repeat;
+}
+.org-vcyber{
+    background-position: 0 0;
+}
+.org-vcyber:hover{
+    background-position: 0 -420px;
+}
+.org-onstar{
+    background-position: 0 -140px;
+}
+.org-onstar:hover{
+    background-position: 0 -560px;
+}
+.org-cloud{
+    background-position: 0 -280px; 
+}
+.org-cloud:hover{
+    background-position: 0 -700px;
+}
+/* 遮罩层 */
+.backdrop{
+    display: block;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #b7b5b5;
+    -moz-opacity: 0.3;
+    opacity: .30;
+    filter: alpha(opacity=30);
+}
+.window-frame{
+    width: 100%;
+    height: calc(100% - 30px);
+    overflow: auto;
+    position: relative;
+}
+.winmodal-header {
+    min-height: 16px;   
+    border-bottom: 1px solid #e5e5e5;
+}
+.dialog{
+    max-width:600px;
+    min-width: 300px;
+    min-height:150px;
+    max-height: 450px;   
+    border-radius: 3px;    
+    position: absolute; 
+     
+}
+.dialog-regbk{
+     background: #7ecdf4;
+}
+.dialog-errorbk{
+     background: #E03F27;
+}
+.dialog-header {
+    height: 35px;   
+    font-size: 16px;      
+    padding: 6px; 
+    color: #fff;   
+}
+.dialog-header p{
+    margin: 0;
+}
+.dialog-icon{
+    width: 17px;
+    height: 17px;
+    display: inline-block;   
+    white-space: nowrap;    
+    color: transparent;
+    vertical-align: -3px;
+    background: url(../images/dialog-icon.png) no-repeat center;
+}
+.notify{
+    background-position: 0 -51px;
+}
+.prompt{
+    background-position: 0 -17px;
+}
+.error{
+    background-position: 0 0;
+}
+.confirm{
+    background-position: 0 -34px;
+}
+.dialog-bg {
+    width: 99.5%;
+    margin: 0 auto;
+    margin-bottom: 1px;
+    min-height: 114px;
+    max-height: 414px;
+    background: #f8f8f8;
+    border-radius: 3px;   
+} 
+.dialog-body{
+    padding: 5px 5px;
+    min-height: 114px;
+    max-height:414px;   
+}
+.dialog-content{
+    max-height: 374px;
+    min-height: 74px;
+    overflow: auto;
+}
+.dialog-btn {
+    text-align: center;
+    width: inherit; 
+    height: 30px;   
+}
+.dialog-btn button{
+    width:80px;
+    height: 18px;   
+    line-height: 15px;
+    margin-left: 8px;
+    border:0px;
+    border-radius: 3px;   
+    cursor: pointer; 
+    vertical-align: -8px;   
+}
+.regbtn{
+    box-shadow:0 0 0 .15em #ace0f7;
+    color: #ace0f7;
+}
+.regbtn:hover{
+    background: #ace0f7;
+    color: #fff;
+}
+.errorbtn{
+    box-shadow:0 0 0 .15em #E03F27;
+    color: #E03F27;
+}
+.errorbtn:hover{
+    background: #E03F27;
+    color: #fff;
+}

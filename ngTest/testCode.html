@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">添加缓存</button>
+    <button id="btn1">div</button>
+    <div id="div" style="border:1px solid #000; width:500px; height:500px;"></div>
+</body>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://malsup.github.io/min/jquery.blockUI.min.js"></script>
+<script src="js/testCode.js"></script>
+<!-- <script>
+    $('#btn').click(function(){
+        $.blockUI({
+            fadeIn: 1000,
+            timeout:   2000,
+            onBlock: function() {
+                alert('Page is now blocked; fadeIn complete');
+            }
+        });
+        setTimeout(function(){
+            $.unblockUI();
+        },500);
+    });
+    $('#btn1').click(function(){
+        var _this = $('#div')
+        _this.block();
+    })
+</script> -->
+<!-- <script>
+    var arr = [{
+        key: "win_1",
+        values: [{url:"notify"},{url:"error"}]
+    },
+    {
+        key:"win_2",
+        values: [{url: "prompt"}]
+    }
+    ];
+    
+    function removeArray(modal){
+        arr.forEach(function(item){
+            if(item.key === modal.backDiv){
+                var _filter = undefined;
+                if(item.values.length === 1){
+                    _filter = arr.filter(function(value){
+                        return value.key !== modal.backDiv;
+                    });
+                    arr = _filter;
+                }else{
+                    _filter = item.values.filter(function(value){
+                        return value.url !== modal.url;
+                    });
+                    item.values = _filter;
+                }                  
+               
+            }
+        })
+        // for(var i = 0; i < arr.length; i++){
+        //     if(arr[i].key === modal.backDiv){
+        //         var sm = arr[i],
+        //             valuse = sm.values;
+        //         if(valuse.length === 1){
+        //             arr.splice(i,1);
+        //         }
+        //         else{
+        //             for(var j = 0, len = valuse.length; j < len; j++){
+        //                 if(valuse[j].url === modal.url){
+        //                     sm.values.splice(j,1);
+        //                     break;
+        //                 }
+        //             }
+        //         }               
+        //     }          
+        // }
+    };
+
+    var modals = {backDiv: "win_1", url: "notify"};
+    var modals1 = {backDiv: "win_2", url: "prompt"};
+    removeArray(modals);
+    console.log(arr);
+    
+
+</script> -->
+    
+</html>

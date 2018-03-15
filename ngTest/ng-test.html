@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script> 
+</head>
+<body ng-app="deskApp">
+    <div ng-controller="Ctrl">
+        <my-hello my-name="name" my-age="age"></my-hello>
+    </div>
+</body>
+    <script>
+        angular.module('deskApp', [])
+        .directive('myHello',function(){
+            return{
+                restrict: 'AE',
+                replace: true,
+                scope:{
+                    myName:'=',
+                    myAge: '='
+                },
+                template:'<p>Hello!{{yourname}},I am {{myAge}} years old!</p>',
+                link:function($s,$e,$a){
+                 $s.yourname = $s.myName;
+                }
+            };
+        })
+        .controller('Ctrl',['$scope', function($scope){
+            $scope.name = 'Joan';
+            $scope.age = 24;
+        }])
+
+    </script>
+</html>

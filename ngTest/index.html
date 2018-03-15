@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车音网智能客服平台</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap-3.1.1/css/bootstrap.min.css"> 
+   
+    <!--滚动条样式插件加载-->
+    <link href="scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>    
+    <!-- <script src="scrollbar/jquery.ui.min.js"></script>     -->
+  
+    <!--滚动条jquery属性-->   
+    <!-- <script src="js/template.js"></script> -->
+   
+    <!-- <script src="js/index.js" async="async"></script>     -->
+      
+    </script>
+</head>
+<body>
+    <div class="contain" >
+        <!--顶部开始-->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-img"></div>
+                <div class="logo-title"></div>
+            </div>
+            <div class="right-menu">
+                <ul class="menu-style">
+                    <li class="menu-list">
+                        <div class="li-style"></div>
+                        <div class="menu-msg">
+                             <button class="menu-btn m-msg" type="button" value=""></button>
+                             <p class="menu-title">消息</p>
+                        </div>
+                    </li>
+                    <li class="menu-list">
+                        <div class="li-style"></div>
+                        <div class="menu-lock">
+                              <button class="menu-btn m-lock" type="button" value=""></button>
+                              <p class="menu-title">锁定</p>
+                        </div>
+                    </li>
+                    <li class="menu-list">
+                        <div class="li-style"></div>
+                        <div class="menu-logout">
+                              <button class="menu-btn m-logout" type="button" value=""></button>
+                              <p class="menu-title">注销</p>
+                        </div>
+                    </li>
+                    <li class="user-info">
+                        <div class="user-info-img"><img src="images/customer-service.png"></div> 
+                        <div class="user-info-name"> <p>{{name}}</p></div>       
+                    </li>                   
+                </ul>
+            </div>
+        </header>
+        <!--顶部结束-->
+       
+        <!--中间内容开始-->
+        <div class="content">
+            <div class="left-flag"></div>
+            <div class="left-nav">
+                <button class="nav-btn btn-focus" id="js-nav-btn" type="button"></button>
+            </div>            
+            <div class="desk-nav">
+                <section class="desk-menu scrollbar focus"  id="menu-home"> </section>
+                <section class="desk-menu scrollbar" id="menu-thirdpart"></section>
+                <section class="desk-menu scrollbar" id="menu-setting"></section>
+                <div class="desk-menu-tab">
+                    <ul class="desk-menu-ul">
+                        <li class="tab-stlye active"><div class="tab-img tab-home"></div></li>
+                        <li class="tab-stlye"><div class="tab-img tab-third"></div></li>
+                        <li class="tab-stlye"><div class="tab-img tab-setting"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="desk-content">   
+                             
+            </div>
+        </div>
+        <!--中间内容结束-->
+
+        <!--底部开始-->
+        <footer class="footer">
+             <div class="task-bar" id="js-home-btn">               
+            </div>
+            <ul class="task-window">               
+            </ul> 
+        </footer>
+        <!--底部结束-->
+    </div>
+    <script src="js/jquery-1.11.1.min.js"></script>   
+    <script src="js/template.js"></script>
+    <script src="js/window.js"></script>
+    <script src="js/index.js"></script>    
+    <script src="scrollbar/jquery.mCustomScrollbar.js"></script>
+
+</body>
+</html>

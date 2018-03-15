@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+    <!-- <canvas id="drawing" width="200" height="200"></canvas> -->
+    <!-- <div id="myDiv">Right click or Ctrl+click me to get a custom context menu.Click anywhere else to get the default context menu.</div>
+    <ul id="myMenu" style="position:absolute;visibility:hidden;background-color:silver">
+        <li><a href="http://www.nczonline.net">Nicholas’ site</a></li>
+        <li><a href="http://www.wrox.com">Wrox site</a></li>
+        <li><a href="http://www.yahoo.com">Yahoo!</a></li>
+    </ul> -->
+    <button id="myBtn">你猜</button>
+    <script>
+        var EventUtil = {
+            addHandler: function(ele, type, handler){
+                if(ele.addEventListener){
+                    ele.addEventListener(type, handler, false);
+                }else if(ele.attachEvent){
+                    ele.attachEvent("on" + type, handler);
+                }else{
+                    ele["on" + type] = handler;
+                }
+            },
+            removeHandler: function(ele, type, handler){
+                if(ele.removeEventListener){
+                    ele.removeEventListener(type, handler, false);
+                }else if(ele.detachEvent){
+                    ele.detachEvent("on" + type, handler);
+                }else{
+                    ele["on" + type] = null;
+                }
+            },
+            getEvent: function(event){
+                return event ? event : window.event;
+            },
+            getTarget: function(event){
+                return event.target || event.srcElement;
+            },
+            preventDefault: function(event){
+                if(event.preventDefault){
+                    event.preventDefault();
+                }else{
+                    event.returnValue = false;
+                }
+            },
+            stopPropagation: function(event){
+                if(event.stopPropagation){
+                    event.stopPropagation();
+                }else{
+                    event.cancelBubble = true;
+                }
+            },
+            getRelatedTarget: function(event){
+                if(even.relatedTarget){
+                    return event.relatedTarget;
+                }else if(event.toElement){
+                    return event.toElement;
+                }else if(event.fromElement){
+                    return event.fromElement;
+                }else{
+                    return null;
+                }
+            },
+            getButton: function(event){
+                if(document.implementation.hasFeature("MouseEventd", "2.0")){
+                    return event.button;
+                }else{
+                    switch(event.button){
+                        case 0:
+                        case 1:
+                        case 3:
+                        case 5:
+                        case 7:
+                            return 0;
+                        case 2:
+                        case 6:
+                            return 2;
+                        case 4:
+                            return 1;
+                    }
+                }
+            },
+            getWheelDelta: function(event){
+                if(event.wheelDelta){
+                    return(client.engine.opera && client.engine.opera < 9.5 ? -event.wheelDelta : event.wheelDelta);
+                }else{
+                    return - event.detail * 40;
+                }
+            },
+            getCharCode: function(event){
+                if(typeof event.charCode == "number"){
+                    return event.charCode;
+                }else{
+                    return event.keyCode;
+                }
+            }
+        }
+       
+    //    function bind(fn, context){
+    //        var args = Array.prototype.slice.call(arguments, 2);
+    //        return function(){
+    //            var innerArgs = Array.prototype.slice.call(arguments);
+    //            var finalArgs = args.concat(innerArgs);
+    //            return fn.apply(context, arguments);
+    //        }
+    //    }
+
+    //    var handler = {
+    //        message: "你说什么！",
+    //        handerClick: function(name, event){
+    //            alert(this.message + ":" + name + ":" + event.type);
+    //        }
+    //    }
+
+    //    var btn = document.getElementById("myBtn");
+    //    EventUtil.addHandler(btn,"click",handler.handerClick.bind(handler, "MyBtn"));
+
+        // EventUtil.addHandler(window, "load", function(event){
+        //     var div = document.getElementById("myDiv");
+        //     EventUtil.addHandler(div, "contextmenu", function(event){
+        //         event = EventUtil.getEvent(event);
+        //         EventUtil.preventDefault(event);
+
+        //         var menu = document.getElementById("myMenu");
+        //         menu.style.left = event.clientX + "px";
+        //         menu.style.top = event.clientY + "px";
+        //         menu.style.visibility = "visible";
+        //     });
+        //     EventUtil.addHandler(document, "click", function(event){
+        //         document.getElementById("myMenu").style.visibility = "hidden";
+        //     })
+        // })
+        // var drawing = document.getElementById("drawing");
+        // if(drawing.getContext){
+        //     var context = drawing.getContext("2d");
+        //     //绘制红色矩形
+        //     context.fillStyle = "#ff0000";
+        //     context.fillRect(10, 10, 50, 50);
+        //     //绘制半透明的蓝色矩形
+        //     context.fillStyle = "rgba(0, 0, 255, 0.5)";
+        //     context.fillRect(30, 30, 50, 50); 
+        //     //在两个矩形重叠的地方清除一个小矩形
+        //     context.clearRect(40, 40, 10, 10);
+        //     //描边
+        //     // context.strokeStyle = "#ff0000";
+        //     // context.strokeRect(10, 10, 50, 50);
+        //     // context.strokeStyle = "rgba(0, 0, 255, 0.5)";
+        //     // context.strokeRect(30, 30, 50, 50);
+        // }
+        // function cuury(fn){
+        //     var args = Array.prototype.slice.call(arguments, 1);
+        //     return function(){
+        //         var innerArgs = Array.prototype.slice.call(arguments);
+        //         var finalArgs = args.concat(innerArgs);
+        //         return fn.apply(null,finalArgs);
+        //     }
+        // }
+
+        // function add(num1, num2){
+        //     return num1 + num2;
+        // }
+        // var curriedAdd = cuury(add, 5, 12);
+        // alert(curriedAdd());
+        function EventTarget(){
+            this.handlers = {};
+        }
+        EventTarget.prototype = {
+            constructor: EventTarget,
+            addHandler: function(type, handler){
+                if(typeof this.handlers[type] == "undefined"){
+                    this.handlers[type] = [];
+                }else{
+                    this.handlers[type].push(handler);
+                }
+            },
+            fire: function(event){
+                if(!event.target){
+                    event.target = this;
+                }
+                if(this.handlers[event.type] instanceof Array){
+                    var handlers = this.handlers[event.type];
+                    for(var i = 0 , len = handlers.length; i<len ; i++){
+                        handlers[i](event);
+                    }
+                }
+            },
+            removeHandler: function(type, handler){
+                if(this.handlers[type] instanceof Array){
+                    var handlers = this.handlers[type];
+                    for(var i = 0, len = handlers.length; i<len; i++){
+                        if(handlers[i] === handler){
+                            handlers.splice(i, 1);
+                            break;
+                        }
+                    }                  
+                }
+            }
+        };
+
+      
+
+        // var target = new EventTarget();
+        // target.addHandler("message", handleMessage);
+        // target.fire({type:"message", message: "你好啊"});
+        // target.removeHandler("message", handleMessage);
+        // target.fire({ type: "message", message: "Hello world!"});
+
+        function Person(name, age){
+            EventTarget.call(this);
+            this.name = name;
+            this.age = age;    
+        }
+        // inheritPrototype(Person, EventTarget);
+
+        Person.prototype.say = function(message){
+            this.fire({type:"message", message: message});
+        }
+
+        function handleMessage(event){
+            alert(event.target.name + "says:" + event.message);
+        }
+
+        var person = new Person("Joan", 29);
+        person.addHandler("message", handleMessage);
+        person.say("Hi there.");
+    </script>
+</body>
+</html>
